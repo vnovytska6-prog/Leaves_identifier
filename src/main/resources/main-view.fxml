@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="leaves_ident.MainController">
+
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Open Image" onAction="#handleOpenImage"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Leaves">
+                <MenuItem text="Convert to Black &amp; White" onAction="#handleConvertToBW"/>
+                <MenuItem text="Find Leaves" onAction="#handleFindLeaves"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Color All Clusters" onAction="#handleColorAllClusters"/>
+                <MenuItem text="Color Single Cluster" onAction="#handleColorSingleCluster"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Run TSP Path" onAction="#handleRunTSP"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Clear Markings" onAction="#handleClear"/>
+                <MenuItem text="Reset" onAction="#handleReset"/>
+            </Menu>
+            <Menu text="View">
+                <MenuItem text="Toggle Numbers" onAction="#handleToggleNumbers"/>
+            </Menu>
+            <Menu text="Info">
+                <MenuItem text="Image Details" onAction="#handleImageDetails"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox fx:id="imageContainer" spacing="20" alignment="CENTER" style="-fx-padding: 20;"/>
+    </center>
+
+    <right>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+            <VBox spacing="10" style="-fx-padding: 15; -fx-min-width: 220;">
+
+                <!-- HSV SLIDERS -->
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="HSV Settings"/>
+
+                <VBox spacing="5">
+                    <Label text="Hue Min"/>
+                    <Slider fx:id="hueMinSlider" min="0" max="360" value="0" majorTickUnit="60" showTickLabels="true" showTickMarks="true"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Hue Max"/>
+                    <Slider fx:id="hueMaxSlider" min="0" max="360" value="60" majorTickUnit="60" showTickLabels="true" showTickMarks="true"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Saturation"/>
+                    <Slider fx:id="saturationSlider" min="0" max="1" value="0.2" majorTickUnit="0.2" showTickLabels="true" showTickMarks="true" blockIncrement="0.05"/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Brightness"/>
+                    <Slider fx:id="brightnessSlider" min="0" max="1" value="0.15" majorTickUnit="0.2" showTickLabels="true" showTickMarks="true" blockIncrement="0.05"/>
+                </VBox>
+
+                <Button text="Apply &amp; Re-convert" onAction="#handleApplyHSV" maxWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+
+                <Separator/>
+
+                <!-- QUICK ACTIONS -->
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Quick Actions"/>
+                <Button text="1. Convert to B&amp;W" onAction="#handleConvertToBW" maxWidth="Infinity"/>
+                <Button text="2. Find Leaves" onAction="#handleFindLeaves" maxWidth="Infinity"/>
+
+                <Separator/>
+
+                <Button text="Color All" onAction="#handleColorAllClusters" maxWidth="Infinity"/>
+                <Button text="Color Single" onAction="#handleColorSingleCluster" maxWidth="Infinity"/>
+                <Button text="Run TSP" onAction="#handleRunTSP" maxWidth="Infinity"/>
+
+                <Separator/>
+
+                <Button text="Clear" onAction="#handleClear" maxWidth="Infinity"/>
+                <Button text="Reset" onAction="#handleReset" maxWidth="Infinity"/>
+
+                <Separator/>
+
+                <!-- NOISE FILTER -->
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Noise Filter"/>
+                <Label text="Min pixels:"/>
+                <TextField fx:id="minSizeField" text="20" maxWidth="Infinity"/>
+                <Button text="Apply Filter" onAction="#handleApplyNoiseFilter" maxWidth="Infinity"/>
+
+            </VBox>
+        </ScrollPane>
+    </right>
+
+    <bottom>
+        <VBox>
+            <HBox spacing="10" style="-fx-padding: 5;">
+                <Label fx:id="leafCountLabel" text="Leaves: 0" style="-fx-font-weight: bold; -fx-text-fill: #2196F3;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <CheckBox fx:id="showNumbersCheckBox" text="Show Numbers" onAction="#handleToggleNumbers"/>
+            </HBox>
+            <Label fx:id="statusLabel" style="-fx-padding: 5;" text="Ready"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

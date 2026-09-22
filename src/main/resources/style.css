@@ -1,0 +1,28 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.menu-bar {
+    -fx-background-color: #f0f0f0;
+}
+
+.button {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 8px;
+}
+
+.button:hover {
+    -fx-background-color: #c0c0c0;
+}
+
+.slider .track {
+    -fx-background-color: #d0d0d0;
+}
+
+.slider .thumb {
+    -fx-background-color: #3498db;
+}
+
+#leafCountLabel {
+    -fx-text-fill: #2196F3;
+}
